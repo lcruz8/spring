@@ -3,7 +3,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @Development
 // @Profile("development") //Comentado na aula 12 - define o perfil a qual as configurações se aplicam
 public class  Config {
