@@ -10,11 +10,22 @@ import org.springframework.stereotype.Service;
 */
 @Service
 public class ClientesService {
-    private ClientesRepository repository;
     @Autowired
-    public ClientesService( ClientesRepository repository) {
-        this.repository = repository;
-    }
+    private ClientesRepository repository;
+    /*
+        //Formas de injeção de dependência: através da annotation @Autowired, não é necessário o construtor
+        //A annotation escaneia o método ou a variável e injeta a classe, para isso, é necessário que a classe
+        //que será instanciada seja sinalizada por @Repository, @Service ou outra annotation
+        private ClientesRepository repository;
+        private setRepository(ClientesRepository repository) {
+            this.repository = repository;
+        }
+        //Formas de injeção de dependência: através do construtor
+        private ClientesRepository repository;
+        public ClientesService( ClientesRepository repository) {
+            this.repository = repository;
+        }
+     */
 
     public void salvarCliente(Cliente cliente) {
         validarCliente(cliente);

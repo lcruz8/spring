@@ -1,6 +1,7 @@
 package io.github.lcruz8;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.context.annotation.ComponentScan;
@@ -19,8 +20,13 @@ para classes dentro da própria package @SpringBootApplication. Geralmente é ut
 public class VendasApplication {
 
     // Qualifier = injeta o bean que faz referência a Config.applicationName na string applicationName desta classe
-    @Autowired
+   /* @Autowired
     @Qualifier("applicationName")
+    private String applicationName;
+    ^^ comentado após a adição da annotation @Value
+    */
+
+    @Value("${application.name}")
     private String applicationName;
 
     //Mapeia o método para o browser enxergar - url_servidor/hello
