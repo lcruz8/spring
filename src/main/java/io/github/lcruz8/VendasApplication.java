@@ -17,6 +17,7 @@ public class VendasApplication {
     public CommandLineRunner init (@Autowired Clientes clientes) {
 
         return args -> {
+                //Insere os dois objetos no banco
                 Cliente cliente = new Cliente();
                 cliente.setNome("Lane");
                 cliente.setTelefone("9188888-8888");
@@ -27,7 +28,7 @@ public class VendasApplication {
                 cliente2.setTelefone("9199999-9999");
                 clientes.salvar(cliente2);
 
-                //Insere os dois objetos no banco
+                //Recupera a listagem de clientes
                 List<Cliente> vClientes = clientes.recuperarTodos();
                 vClientes.forEach(System.out::println);
 
@@ -36,10 +37,22 @@ public class VendasApplication {
                     object.setNome(object.getNome()+" - upd");
                     clientes.alterar(object);
                 });
-                //Atualiza a lista de clientes 
+
+
+                //Busca a lista de clientes
                 List<Cliente> vClienteAtl = clientes.recuperarPorNome("upd");
                 vClienteAtl.forEach(System.out::println);
 
+                vClienteAtl.forEach(c -> {
+                    clientes.excluir(c);
+                });
+
+                List<Cliente> vClientes2 = clientes.recuperarTodos();
+                if(vClientes2.isEmpty()) {
+                    System.out.println("Não há o que recuperar");
+                } else {
+                    vClientes2.forEach(System.out::println);
+                }
 
         };
     }
